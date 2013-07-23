@@ -1,0 +1,104 @@
+/*!
+ * For Bootstrap v2.3.1
+ * 
+ * Copyright 2013 Protelligence
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by Paul Gemignani
+ */
+ body > header{
+ 	min-height: 40px;
+ }
+ body > div.container{
+ 	 	padding-bottom: 50px;
+ }
+ header.container{
+ 	width: 100%;
+ }
+ footer{
+ 	position: fixed;
+ 	width: 100%;
+ 	min-width: 100%;
+	min-height: 50px;
+ 	bottom: 0;
+ 	left: 0;
+ 	padding: 0;
+ 	margin: 0;
+ 	background-color: #556a8f;
+ }
+ 
+ /* Baked views will add actions class to page-container*/
+ 
+ #page-container.actions{
+	border-left: 1px solid #eee;
+	background: -moz-linear-gradient(left,  rgba(142,142,142,0.02) 0%, rgba(142,142,142,0.03) 7%, rgba(0,0,0,0.1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(142,142,142,0.02)), color-stop(7%,rgba(142,142,142,0.03)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(142,142,142,0.02) 0%,rgba(142,142,142,0.03) 7%,rgba(0,0,0,0.1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(142,142,142,0.02) 0%,rgba(142,142,142,0.03) 7%,rgba(0,0,0,0.1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(142,142,142,0.02) 0%,rgba(142,142,142,0.03) 7%,rgba(0,0,0,0.1) 100%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(142,142,142,0.02) 0%,rgba(142,142,142,0.03) 7%,rgba(0,0,0,0.1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#058e8e8e', endColorstr='#1a000000',GradientType=1 ); /* IE6-9 */
+  }
+.actions ul{
+  	padding-top: 20px;
+}
+#page-content.well{
+  	margin-left: 0;
+}
+  
+/* CUSTOM 5 COLUMN SPAN LAYOUT
+ *
+ * based on http://gridcalculator.dk/
+ * width => 1200, gutter => 15px, margin => 15px, columns => 5
+ */
+
+.row-fluid-5 {
+  width: 100%;
+  *zoom: 1;
+}
+.row-fluid-5:before,
+.row-fluid-5:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.row-fluid-5:after {
+  clear: both;
+}
+.row-fluid-5 [class*="span"] {
+  display: block;
+  float: left;
+  width: 100%;
+  min-height: 30px;
+  margin-left: 1.875%;
+  *margin-left: 1.875%;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.row-fluid-5 .controls-row [class*="span"] + [class*="span"] {
+
+  margin-left: 1.875%;
+}
+.row-fluid-5 [class*="span"]:first-child{
+	margin-left: 0;
+}
+.row-fluid-5 .span2 {
+  width: 18.5%;
+  *width: 18.5%;
+}
+
+/* responsive ONLY */
+
+@media (max-width: 600px){ /* spans reduce to 100px then go full width */
+
+	.row-fluid-5 [class*="span"]{
+	margin-left: 0;
+	float: left;
+	width: 100%;
+	padding: 10px; 
+	}
+}
