@@ -1,4 +1,0 @@
-BootCake
-========
-
-Cakephp Bootstrap Skel
