@@ -1,7 +1,17 @@
-Outdoor Guides 360
+BootCake Repository
 =============
+CakePHP Skelton and Templates for baking with bootstrap
+=============
+Skeleton(s)
 
-Outdoor Guide Trip Manager
+1) skel-bootstrap
+
+The Skeleton is a modified cake directory skeleton for starting a new project. Includes bootstrap, jquery, modernizer, and responsive. This skeleton has a top user navigation block.
+bootstrap 2.3.1
+jQuery 1.9.1
+
+
+Template(s)
 
 Development by Protelligence
 url: http://www.protelligence.com
