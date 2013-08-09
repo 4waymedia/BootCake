@@ -30,8 +30,8 @@ $ar = array('created', 'modified', 'id');
 		foreach ($associations as $type => $data) {
 			foreach ($data as $alias => $details) {
 				if ($details['controller'] != $this->name && !in_array($details['controller'], $done)) {
-					echo "<li><?php echo \$this->Html->link(__('List " . Inflector::humanize($details['controller']) . "'), array('controller' => '{$details['controller']}', 'action' => 'index'), array('class' => '')); ?></li>\n";
-					echo "<li><?php echo \$this->Html->link(__('New " . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => '')); ?></li>\n";
+					echo "\t<li><?php echo \$this->Html->link(__('List " . Inflector::humanize($details['controller']) . "'), array('controller' => '{$details['controller']}', 'action' => 'index'), array('class' => '')); ?></li>\n";
+					echo "\t<li><?php echo \$this->Html->link(__('New " . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => '')); ?></li>\n";
 					$done[] = $details['controller'];
 				}
 			}
@@ -53,49 +53,48 @@ $ar = array('created', 'modified', 'id');
 				<tr>
 <?php  foreach ($fields as $field): ?>
 <?php if (!in_array($field, $ar)): ?>
-<th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+				<th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
 <?php endif; ?>
 <?php endforeach; ?>
-<th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
-</tr>
+				<th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
+			</tr>
 <?php
 $ar = array('created', 'modified', 'id');
-echo "<?php
-foreach (\${$pluralVar} as \${$singularVar}): ?>\n";
-echo "\t<tr>\n";
-	foreach ($fields as $field) {
-		$isKey = false;
-		if (!empty($associations['belongsTo'])) {
-			foreach ($associations['belongsTo'] as $alias => $details) {
-				if ($field === $details['foreignKey'] && !in_array($field, $ar) ) {
-					$isKey = true;
+		echo "<?php
+		foreach (\${$pluralVar} as \${$singularVar}): ?>\n";
+		echo "\t<tr>\n";
+			foreach ($fields as $field) {
+				$isKey = false;
+				if (!empty($associations['belongsTo'])) {
+					foreach ($associations['belongsTo'] as $alias => $details) {
+						if ($field === $details['foreignKey'] && !in_array($field, $ar) ) {
+							$isKey = true;
+							if (!in_array($field, $ar)):
+							echo "\t\t<td><?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?></td>\n";
+							endif; 
+							break;
+						}
+					}
+				}
+				if ($isKey !== true) {
 					if (!in_array($field, $ar)):
-					echo "<td><?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?></td>\n";
-					endif; 
-					break;
+					echo "\t\t<td><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";
+					endif;
 				}
 			}
-		}
-		if ($isKey !== true) {
-			if (!in_array($field, $ar)):
-			echo "<td><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";
-			endif;
-		}
-	}
-
-	echo "<td class=\"actions\">\n";
-	echo "<?php echo \$this->Html->link(__('View'), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini')); ?>\n";
-	echo "<?php echo \$this->Html->link(__('Edit'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini')); ?>\n";
-	echo "<?php echo \$this->Form->postLink(__('Delete'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete # %s?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
-	echo "</td>\n";
-echo "</tr>\n";
-
-echo "<?php endforeach; ?>\n";
-?>
+		
+			echo "\t\t<td class=\"actions\">\n";
+			echo "\t\t<?php echo \$this->Html->link(__('View'), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini')); ?>\n";
+			echo "\t\t<?php echo \$this->Html->link(__('Edit'), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini')); ?>\n";
+			echo "\t\t<?php echo \$this->Form->postLink(__('Delete'), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class' => 'btn btn-mini'), __('Are you sure you want to delete # %s?', \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
+			echo "\t\t</td>\n";
+		echo "\t</tr>\n";
+		
+		echo "\t<?php endforeach; ?>\n";
+		?>
 </table>
 <p><small>
-<?php echo "<?php
-echo \$this->Paginator->counter(array(
+<?php echo "<?php echo \$this->Paginator->counter(array(
 'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 ));
 ?>"; ?>
