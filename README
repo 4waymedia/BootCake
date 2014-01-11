@@ -17,6 +17,7 @@ Cakestrap
 
 Cakestrap template is for baking views and incorporating bootstrap elements. We have modified the baked view to streamline redundant modifications such as removing (id, created, modified) fields from views. Implemented view blocks for actions, and a bootstrap button group for actions on a row.
 
+proCake3 template is for baking views using bootstrap 3 class names and structure. Views, Forms, Pagination.
 Development by Protelligence
 url: http://www.protelligence.com
 
